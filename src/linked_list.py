@@ -12,23 +12,37 @@ class LinkedList:
 
     def append(self, value) -> None:
         new_node = Node(value)
-        self.tail.next = new_node
-        self.tail = new_node
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
         self.length += 1
 
     def prepend(self, value) -> None:
         new_node = Node(value)
-        new_node.next = self.head
-        self.head = new_node
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head = new_node
         self.length += 1
 
     def pop(self) -> None:
-        node_n = self.head
-        while (node_n.next != self.tail):
-            node_n = node_n.next
-        node_n.next = None
-        self.tail = node_n
-        self.length -= 1
+        if self.length == 0:
+            print("\nThe LL is empty.")
+            return None
+        elif self.length == 1:
+            self.clear()
+        else:
+            node_n = self.head
+            while (node_n.next != self.tail):
+                node_n = node_n.next
+            node_n.next = None
+            self.tail = node_n
+            self.length -= 1
 
     def insert(self, index) -> None:
         pass
@@ -36,20 +50,28 @@ class LinkedList:
     def remove(self, index) -> None:
         pass
 
+    def clear(self):
+        self.head = None
+        self.tail = None
+        self.length = 0
+
     def print_info(self) -> None:
         # Printing LL information.
         # Example output at "ll_out.txt".
         print("\nLL INFO")
-        print("------------------------------------------------------------")
+        print("-"*60)
         print("LL Head: ", self.head)
         print("LL Tail: ", self.tail)
         print("LL Length: ", self.length)
+        if self.length == 0:
+            print("-"*60)
+            return
         node_n = self.head
         for n in range(1, self.length + 1):
             print(f"Node {n} Value: {node_n.value}")
             print(f"Node {n} Pointer: {node_n.next}")
             node_n = node_n.next
-        print("------------------------------------------------------------")
+        print("-"*60)
 
 if __name__ == "__main__":
     # Creating the linked list.
@@ -68,3 +90,8 @@ if __name__ == "__main__":
 
     ll.pop()
     ll.print_info()
+
+    ll.clear()
+    ll.print_info()
+
+    ll.pop()
