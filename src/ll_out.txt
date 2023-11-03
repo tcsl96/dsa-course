@@ -1,0 +1,60 @@
+LL INFO
+------------------------------------------------------------
+LL Head:  <__main__.Node object at 0x00000254C228FB10>
+LL Tail:  <__main__.Node object at 0x00000254C228FB10>
+LL Length:  1
+Node 1 Value: 3
+Node 1 Pointer: None
+------------------------------------------------------------
+
+LL INFO
+------------------------------------------------------------
+LL Head:  <__main__.Node object at 0x00000254C228FB10>
+LL Tail:  <__main__.Node object at 0x00000254C228FC10>
+LL Length:  2
+Node 1 Value: 3
+Node 1 Pointer: <__main__.Node object at 0x00000254C228FC10>
+Node 2 Value: 5
+Node 2 Pointer: None
+------------------------------------------------------------
+
+LL INFO
+------------------------------------------------------------
+LL Head:  <__main__.Node object at 0x00000254C228FCD0>
+LL Tail:  <__main__.Node object at 0x00000254C228FC10>
+LL Length:  3
+Node 1 Value: 1
+Node 1 Pointer: <__main__.Node object at 0x00000254C228FB10>
+Node 2 Value: 3
+Node 2 Pointer: <__main__.Node object at 0x00000254C228FC10>
+Node 3 Value: 5
+Node 3 Pointer: None
+------------------------------------------------------------
+
+LL INFO
+------------------------------------------------------------
+LL Head:  <__main__.Node object at 0x00000254C228FCD0>
+LL Tail:  <__main__.Node object at 0x00000254C228FC50>
+LL Length:  4
+Node 1 Value: 1
+Node 1 Pointer: <__main__.Node object at 0x00000254C228FB10>
+Node 2 Value: 3
+Node 2 Pointer: <__main__.Node object at 0x00000254C228FC10>
+Node 3 Value: 5
+Node 3 Pointer: <__main__.Node object at 0x00000254C228FC50>
+Node 4 Value: 2
+Node 4 Pointer: None
+------------------------------------------------------------
+
+LL INFO
+------------------------------------------------------------
+LL Head:  <__main__.Node object at 0x00000254C228FCD0>
+LL Tail:  <__main__.Node object at 0x00000254C228FC10>
+LL Length:  3
+Node 1 Value: 1
+Node 1 Pointer: <__main__.Node object at 0x00000254C228FB10>
+Node 2 Value: 3
+Node 2 Pointer: <__main__.Node object at 0x00000254C228FC10>
+Node 3 Value: 5
+Node 3 Pointer: None
+------------------------------------------------------------
