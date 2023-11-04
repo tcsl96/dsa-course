@@ -1,63 +1,86 @@
+Creating LL with node equals to 3.
+
 LL INFO
 ------------------------------------------------------------
-LL Head:  <__main__.Node object at 0x0000021BE931FF50>      
-LL Tail:  <__main__.Node object at 0x0000021BE931FF50>      
+LL Head:  <__main__.Node object at 0x000002018EA80950>      
+LL Tail:  <__main__.Node object at 0x000002018EA80950>      
 LL Length:  1
 Node 1 Value: 3
 Node 1 Pointer: None
 ------------------------------------------------------------
 
+Method = append Value = 5
+
 LL INFO
 ------------------------------------------------------------
-LL Head:  <__main__.Node object at 0x0000021BE931FF50>      
-LL Tail:  <__main__.Node object at 0x0000021BE9334090>      
+LL Head:  <__main__.Node object at 0x000002018EA80950>      
+LL Tail:  <__main__.Node object at 0x000002018EA80B50>      
 LL Length:  2
 Node 1 Value: 3
-Node 1 Pointer: <__main__.Node object at 0x0000021BE9334090>
+Node 1 Pointer: <__main__.Node object at 0x000002018EA80B50>
 Node 2 Value: 5
 Node 2 Pointer: None
 ------------------------------------------------------------
 
+Method = prepend        Value = 1
+
 LL INFO
 ------------------------------------------------------------
-LL Head:  <__main__.Node object at 0x0000021BE9334150>
-LL Tail:  <__main__.Node object at 0x0000021BE9334090>
+LL Head:  <__main__.Node object at 0x000002018EA80AD0>
+LL Tail:  <__main__.Node object at 0x000002018EA80B50>
 LL Length:  3
 Node 1 Value: 1
-Node 1 Pointer: <__main__.Node object at 0x0000021BE931FF50>
+Node 1 Pointer: <__main__.Node object at 0x000002018EA80950>
 Node 2 Value: 3
-Node 2 Pointer: <__main__.Node object at 0x0000021BE9334090>
+Node 2 Pointer: <__main__.Node object at 0x000002018EA80B50>
 Node 3 Value: 5
 Node 3 Pointer: None
 ------------------------------------------------------------
 
-LL INFO
-------------------------------------------------------------
-LL Head:  <__main__.Node object at 0x0000021BE9334150>
-LL Tail:  <__main__.Node object at 0x0000021BE93340D0>
-LL Length:  4
-Node 1 Value: 1
-Node 1 Pointer: <__main__.Node object at 0x0000021BE931FF50>
-Node 2 Value: 3
-Node 2 Pointer: <__main__.Node object at 0x0000021BE9334090>
-Node 3 Value: 5
-Node 3 Pointer: <__main__.Node object at 0x0000021BE93340D0>
-Node 4 Value: 2
-Node 4 Pointer: None
-------------------------------------------------------------
+Method = pop    Value = 5       Next = None
 
 LL INFO
 ------------------------------------------------------------
-LL Head:  <__main__.Node object at 0x0000021BE9334150>
-LL Tail:  <__main__.Node object at 0x0000021BE9334090>
-LL Length:  3
+LL Head:  <__main__.Node object at 0x000002018EA80AD0>
+LL Tail:  <__main__.Node object at 0x000002018EA80950>
+LL Length:  2
 Node 1 Value: 1
-Node 1 Pointer: <__main__.Node object at 0x0000021BE931FF50>
+Node 1 Pointer: <__main__.Node object at 0x000002018EA80950>
 Node 2 Value: 3
-Node 2 Pointer: <__main__.Node object at 0x0000021BE9334090>
-Node 3 Value: 5
-Node 3 Pointer: None
+Node 2 Pointer: None
 ------------------------------------------------------------
+
+Method = pop_first      Value = 1       Next = None
+
+LL INFO
+------------------------------------------------------------
+LL Head:  <__main__.Node object at 0x000002018EA80950>
+LL Tail:  <__main__.Node object at 0x000002018EA80950>
+LL Length:  1
+Node 1 Value: 3
+Node 1 Pointer: None
+------------------------------------------------------------
+
+Methods = set and get   Value = 9
+
+LL INFO
+------------------------------------------------------------
+LL Head:  <__main__.Node object at 0x000002018EA80950>
+LL Tail:  <__main__.Node object at 0x000002018EA80950>
+LL Length:  1
+Node 1 Value: 9
+Node 1 Pointer: None
+------------------------------------------------------------
+
+Methods = clear, get, set, pop and pop_first.
+
+The LL is empty.
+
+The LL is empty.
+
+The LL is empty.
+
+The LL is empty.
 
 LL INFO
 ------------------------------------------------------------
@@ -65,5 +88,3 @@ LL Head:  None
 LL Tail:  None
 LL Length:  0
 ------------------------------------------------------------
-
-The LL is empty.
