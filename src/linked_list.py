@@ -11,7 +11,7 @@ class LinkedList:
         self.tail = new_node
         self.length = 1
 
-    def append(self, value) -> None:
+    def append(self, value) -> bool:
         new_node = Node(value)
         if (self.length == 0):
             self.head = new_node
@@ -22,7 +22,7 @@ class LinkedList:
         self.length += 1
         return True
 
-    def prepend(self, value) -> None:
+    def prepend(self, value) -> bool:
         new_node = Node(value)
         if (self.length == 0):
             self.head = new_node
@@ -33,24 +33,10 @@ class LinkedList:
         self.length += 1
         return True
 
-    def get(self, index: int) -> None | Node:
-        if (index < 0) or (index >= self.length):
-            print("\nIndex Out of Range.")
-            return None
-        ref = self.head
-        for _ in range(index):
-            ref = ref.next
-        return ref
-
-    def set(self, index: int, value) -> None:
-        ref = self.get(index)
-        if (ref is not None):
-            ref.value = value
-
-    def pop(self) -> bool | Node:
+    def pop(self) -> None | Node:
         if (self.length == 0):
             print("\nThe LL is empty.")
-            return False
+            return None
         elif (self.length == 1):
             popped_node = self.tail
             self.clear()
@@ -65,10 +51,10 @@ class LinkedList:
             self.length -= 1
             return popped_node
 
-    def pop_first(self) -> bool | Node:
+    def pop_first(self) -> None | Node:
         if (self.length == 0):
             print("\nThe LL is empty.")
-            return False
+            return None
         elif (self.length == 1):
             popped_node = self.head
             self.clear()
@@ -80,8 +66,25 @@ class LinkedList:
             self.length -= 1
             return popped_node
 
+    def get(self, index: int) -> None | Node:
+        if (index < 0) or (index >= self.length):
+            print("\nIndex Out of Range.")
+            return None
+        ref = self.head
+        for _ in range(index):
+            ref = ref.next
+        return ref
+
+    def set(self, index: int, value) -> bool:
+        ref = self.get(index)
+        if (ref is not None):
+            ref.value = value
+            return True
+        return False
+
     def insert(self, index: int, value) -> bool:
         if (index < 0) or (index > self.length):
+            print("\nIndex Out of Range.")
             return False
         if (index == 0):
             return self.prepend(value)
@@ -95,9 +98,10 @@ class LinkedList:
             self.length += 1
             return True
 
-    def remove(self, index: int) -> bool | Node:
+    def remove(self, index: int) -> None | Node:
         if (index < 0) or (index >= self.length):
-            return False
+            print("\nIndex Out of Range.")
+            return None
         if (index == 0):
             return self.pop_first()
         elif (index == (self.length - 1)):
@@ -115,17 +119,6 @@ class LinkedList:
         self.tail = None
         self.length = 0
 
-    def revert(self) -> None:
-        ref = self.head
-        self.head = self.tail
-        self.tail = ref
-        before = None
-        while (ref is not None):
-            after = ref.next
-            ref.next = before
-            before = ref
-            ref = after
-
     def print_info(self) -> None:
         # Printing LL information.
         # Example output at "ll_out.txt".
@@ -140,12 +133,23 @@ class LinkedList:
         node_n = self.head
         for n in range(1, self.length + 1):
             print(f"Node {n} Value: {node_n.value}")
-            print(f"Node {n} Pointer: {node_n.next}")
+            print(f"Node {n} Next: {node_n.next}")
             node_n = node_n.next
         print("-"*60)
 
     # Leetcode Exercises.
-    def find_middle_node(self):
+    def revert(self) -> None:
+        ref = self.head
+        self.head = self.tail
+        self.tail = ref
+        before = None
+        while (ref is not None):
+            after = ref.next
+            ref.next = before
+            before = ref
+            ref = after
+
+    def find_middle_node(self) -> None | Node:
         slow = self.head
         fast = self.head
         while (fast.next is not None) and (fast is not None):
@@ -153,7 +157,7 @@ class LinkedList:
             fast = fast.next.next
         return slow
     
-    def has_loop(self):
+    def has_loop(self) -> bool:
         """
         Floyd's cycle-finding algorithm, often referred to as the "tortoise and the hare" technique.
         """
@@ -166,7 +170,7 @@ class LinkedList:
                 return True
         return False
 
-    def find_kth_from_end(self, index):
+    def find_kth_from_end(self, index: int) -> None | Node:
         ref = self.head   
         after = self.head 
         for _ in range(index):
@@ -178,9 +182,9 @@ class LinkedList:
             after = after.next
         return ref
 
-    def partition_list(self, value):
-        if (self.length == 0):
-            return None
+    def partition_list(self, value) -> bool:
+        if (self.length <= 1):
+            return False
         dummy1 = Node(0)
         dummy2 = Node(0)
         next1 = dummy1
@@ -197,8 +201,9 @@ class LinkedList:
         next1.next = dummy2.next
         next2.next = None
         self.head = dummy1.next
+        return True
 
-    def remove_duplicates(self):
+    def remove_duplicates(self) -> None:
         nodes = {}
         ref = self.head
         before = None
@@ -213,7 +218,7 @@ class LinkedList:
                 before = ref
                 ref = ref.next
 
-    def binary_to_decimal(self):
+    def binary_to_decimal(self) -> None | int:
         if (self.length == 0):
             return None
         dec = 0
@@ -224,7 +229,7 @@ class LinkedList:
         return dec
 
     # TODO: Implement this method.
-    def reverse_between(self, start_index, end_index):
+    def reverse_between(self, start_index: int, end_index: int) -> None:
         pass
 
 if __name__ == "__main__":
