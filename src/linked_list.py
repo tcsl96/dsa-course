@@ -235,7 +235,7 @@ class LinkedList:
 if __name__ == "__main__":
     # Creating the linked list.
     print("Creating LL with node equals to 3.")
-    ll = LinkedList()
+    ll = LinkedList(3)
     ll.print_info()
 
     # Applying the methods.
