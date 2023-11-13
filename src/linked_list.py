@@ -1,3 +1,5 @@
+from utils import get_id
+
 class Node:
     def __init__(self, value) -> None:
         self.value = value
@@ -5,11 +7,14 @@ class Node:
 
 class LinkedList:
     # Main methods.
-    def __init__(self, value) -> None:
-        new_node = Node(value)
-        self.head = new_node
-        self.tail = new_node
-        self.length = 1
+    def __init__(self, value=None) -> None:
+        if (value is not None):
+            new_node = Node(value)
+            self.head = new_node
+            self.tail = new_node
+            self.length = 1
+        else:
+            self.make_clear()
 
     def append(self, value) -> bool:
         new_node = Node(value)
@@ -39,8 +44,7 @@ class LinkedList:
             return None
         elif (self.length == 1):
             popped_node = self.tail
-            self.clear()
-            return popped_node
+            self.make_clear()
         else:
             ref = self.head
             while (ref.next != self.tail):
@@ -49,7 +53,7 @@ class LinkedList:
             ref.next = None
             self.tail = ref
             self.length -= 1
-            return popped_node
+        return popped_node
 
     def pop_first(self) -> None | Node:
         if (self.length == 0):
@@ -57,14 +61,13 @@ class LinkedList:
             return None
         elif (self.length == 1):
             popped_node = self.head
-            self.clear()
-            return popped_node
+            self.make_clear()
         else:
             popped_node = self.head
             self.head = popped_node.next
             popped_node.next = None
             self.length -= 1
-            return popped_node
+        return popped_node
 
     def get(self, index: int) -> None | Node:
         if (index < 0) or (index >= self.length):
@@ -114,7 +117,7 @@ class LinkedList:
             self.length -= 1
             return removed_node
 
-    def clear(self) -> None:
+    def make_clear(self) -> None:
         self.head = None
         self.tail = None
         self.length = 0
@@ -122,20 +125,17 @@ class LinkedList:
     def print_info(self) -> None:
         # Printing LL information.
         # Example output at "ll_out.txt".
-        print("\nLL INFO")
-        print("-"*60)
-        print("LL Head: ", self.head)
-        print("LL Tail: ", self.tail)
-        print("LL Length: ", self.length)
+        N_DASH = 100
+        print("\n" + "-"*N_DASH + "\nLL Info" + "\n" + "-"*N_DASH)
+        print(f"{'Head:':6}{get_id(self.head):<20}{'Tail:':7}{get_id(self.tail):<20}{'Length:':8}{self.length}")
         if (self.length == 0):
-            print("-"*60)
+            print("-"*N_DASH)
             return None
         node_n = self.head
-        for n in range(1, self.length + 1):
-            print(f"Node {n} Value: {node_n.value}")
-            print(f"Node {n} Next: {node_n.next}")
+        for n in range(self.length):
+            print(f"{'Node:':6}{n:<20}{'Value:':7}{node_n.value:<20}{'Id:':8}{get_id(node_n):<20}Next: {get_id(node_n.next)}")
             node_n = node_n.next
-        print("-"*60)
+        print("-"*N_DASH)
 
     # Leetcode Exercises.
     def revert(self) -> None:
@@ -235,35 +235,56 @@ class LinkedList:
 if __name__ == "__main__":
     # Creating the linked list.
     print("Creating LL with node equals to 3.")
-    ll = LinkedList(3)
+    ll = LinkedList()
     ll.print_info()
 
     # Applying the methods.
-    print("\nMethod = append\tValue = 5")
+    print("\nAppending 5.")
     ll.append(5)
     ll.print_info()
 
-    print("\nMethod = prepend\tValue = 1")
+    print("\nPrepending 1.")
     ll.prepend(1)
     ll.print_info()
 
     popped_node_1 = ll.pop()
-    print(f"\nMethod = pop\tValue = {popped_node_1.value}\tNext = {popped_node_1.next}")
+    print(f"\nPopping last node.\nValue: {popped_node_1.value:<5}Next: {get_id(popped_node_1.next)}")
     ll.print_info()
 
     popped_node_2 = ll.pop_first()
-    print(f"\nMethod = pop_first\tValue = {popped_node_2.value}\tNext = {popped_node_2.next}")
+    print(f"\nPopping first node.\nValue: {popped_node_2.value:<5}Next: {get_id(popped_node_2.next)}")
     ll.print_info()
 
+    print(f"\nSetting value 9 to node of index 0.")
     ll.set(0, 9)
-    node_n = ll.get(0)
-    print(f"\nMethods = set and get\tValue = {node_n.value}")
     ll.print_info()
 
-    print("\nMethods = clear, get, set, pop and pop_first.")
-    ll.clear()
-    ll.get(0)
-    ll.set(0, 1)
+    print("\nCleaning the LL.")
+    ll.make_clear()
+    ll.print_info()
+
+    print("\nMethods pop, pop_first, remove, get and set in a empty LL.")
     ll.pop()
     ll.pop_first()
+    ll.remove(0)
+    ll.get(0)
+    ll.set(0, 1)
+
+    print("\nAppending some values to LL.")
+    ll.append(1)
+    ll.append(2)
+    ll.append(3)
+    ll.append(4)
+    ll.append(5)
+    ll.print_info()
+
+    node_n = ll.get(2)
+    print(f"\nGetting node at index 2.\nValue: {node_n.value:<5}Next: {get_id(node_n.next)}")
+
+    print("\nInserting 25 at index 2.")
+    ll.insert(2, 2.5)
+    ll.print_info()
+
+    removed_node = ll.remove(3)
+    print(f"\nRemoving node at index 3.\nValue: {removed_node.value:<5}Next: {get_id(removed_node.next)}")
     ll.print_info()
