@@ -7,6 +7,7 @@ class Node:
         self.prev = None
 
 class DoublyLinkedList:
+    # Main Methods.
     def __init__(self, value=None) -> None:
         if (value is not None):
             new_node = Node(value)
@@ -73,7 +74,7 @@ class DoublyLinkedList:
     
     def get(self, index: int) -> None | Node:
         if (index < 0) or (index >= self.length):
-            print("\nIndex Out of Range.")
+            print("\nIndex out of range.")
             return None
         if (index*2 >= self.length):
             ref = self.tail
@@ -94,7 +95,7 @@ class DoublyLinkedList:
 
     def insert(self, index: int, value) -> bool:
         if (index < 0) or (index > self.length):
-            print("\nIndex Out of Range.")
+            print("\nIndex out of range.")
             return False
         if (index == 0):
             return self.prepend(value)
@@ -113,7 +114,7 @@ class DoublyLinkedList:
 
     def remove(self, index: int) -> None | Node:
         if (index < 0) or (index >= self.length):
-            print("\nIndex Out of Range.")
+            print("\nIndex out of range.")
             return None
         if (index == 0):
             return self.pop_first()
@@ -242,7 +243,7 @@ if __name__ == "__main__":
     dll.make_clear()
     dll.print_info()
 
-    print("\nMethods pop, pop_first, remove, get and set in a empty DLL.")
+    print("\nMethods pop, pop_first, remove, get and set in an empty DLL.")
     dll.pop()
     dll.pop_first()
     dll.remove(0)
