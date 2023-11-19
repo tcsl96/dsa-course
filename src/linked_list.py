@@ -14,7 +14,7 @@ class LinkedList:
             self.tail = new_node
             self.length = 1
         else:
-            self.make_clear()
+            self.make_clean()
 
     def append(self, value) -> bool:
         new_node = Node(value)
@@ -44,12 +44,12 @@ class LinkedList:
             return None
         elif (self.length == 1):
             popped_node = self.tail
-            self.make_clear()
+            self.make_clean()
         else:
+            popped_node = self.tail
             ref = self.head
             while (ref.next != self.tail):
                 ref = ref.next
-            popped_node = ref.next
             ref.next = None
             self.tail = ref
             self.length -= 1
@@ -61,7 +61,7 @@ class LinkedList:
             return None
         elif (self.length == 1):
             popped_node = self.head
-            self.make_clear()
+            self.make_clean()
         else:
             popped_node = self.head
             self.head = popped_node.next
@@ -70,7 +70,7 @@ class LinkedList:
         return popped_node
 
     def get(self, index: int) -> None | Node:
-        if (index < 0) or (index >= self.length):
+        if ((index < 0) or (index >= self.length)):
             print("\nIndex out of range.")
             return None
         ref = self.head
@@ -86,10 +86,10 @@ class LinkedList:
         return False
 
     def insert(self, index: int, value) -> bool:
-        if (index < 0) or (index > self.length):
+        if ((index < 0) or (index > self.length)):
             print("\nIndex out of range.")
             return False
-        if (index == 0):
+        elif (index == 0):
             return self.prepend(value)
         elif (index == self.length):
             return self.append(value)
@@ -102,10 +102,10 @@ class LinkedList:
             return True
 
     def remove(self, index: int) -> None | Node:
-        if (index < 0) or (index >= self.length):
+        if ((index < 0) or (index >= self.length)):
             print("\nIndex out of range.")
             return None
-        if (index == 0):
+        elif (index == 0):
             return self.pop_first()
         elif (index == (self.length - 1)):
             return self.pop()
@@ -117,7 +117,7 @@ class LinkedList:
             self.length -= 1
             return removed_node
 
-    def make_clear(self) -> None:
+    def make_clean(self) -> None:
         self.head = None
         self.tail = None
         self.length = 0
@@ -230,7 +230,50 @@ class LinkedList:
 
     # TODO: Implement this method.
     def reverse_between(self, start_index: int, end_index: int) -> None:
-        pass
+        # Checking if the indexes are equal or the linked list has less than 2 nodes.
+        # In the first situation, there is no node between the indexes to reverse.
+        # In the second situation, with less than 2 nodes in the linked list, there are no sufficient nodes to reverse.
+        if ((start_index == end_index) or (self.length < 2)):
+            return None
+        
+        # Checking in the start index is higher than the end index.
+        # If yes, switch the values of both.
+        if (start_index > end_index):
+            temp = start_index
+            start_index = end_index
+            end_index = temp
+
+        # Defining the pointers. ref is pointing to the node in the start index,
+        # before is the node before ref or None, and after is the node after ref.
+        ref = self.head
+        before = None
+        for _ in range(start_index):
+            before = ref
+            ref = ref.next
+        after = ref.next
+        
+        # Defining last pointer, which is pointing to the node in the end index.
+        last = ref
+        for _ in range(end_index - start_index):
+            last = last.next
+        
+        # Handling operations in the node pointed by head.
+        if (before is not None):
+            before.next = last
+        else:
+            self.head = last
+
+        # Handling operations in the node pointed by tail.
+        if (end_index == (self.length - 1)):
+            self.tail = ref
+
+        # Reversing the nodes pointes in the desired range.
+        ref.next = last.next
+        for _ in range(end_index - start_index):
+            before = ref
+            ref = after
+            after = after.next
+            ref.next = before
 
 if __name__ == "__main__":
     # Creating the linked list.
@@ -260,7 +303,7 @@ if __name__ == "__main__":
     ll.print_info()
 
     print("\nCleaning the LL.")
-    ll.make_clear()
+    ll.make_clean()
     ll.print_info()
 
     print("\nMethods pop, pop_first, remove, get and set in an empty LL.")
