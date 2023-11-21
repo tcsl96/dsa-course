@@ -15,7 +15,7 @@ class DoublyLinkedList:
             self.tail = new_node
             self.length = 1
         else:
-            self.make_clear()
+            self.make_clean()
 
     def append(self, value) -> bool:
         new_node = Node(value)
@@ -47,7 +47,7 @@ class DoublyLinkedList:
             return None
         elif (self.length == 1):
             popped_node = self.tail
-            self.make_clear()
+            self.make_clean()
         else:
             popped_node = self.tail
             before = popped_node.prev
@@ -63,7 +63,7 @@ class DoublyLinkedList:
             return None
         elif (self.length == 1):
             popped_node = self.head
-            self.make_clear()
+            self.make_clean()
         else:
             popped_node = self.head
             self.head = popped_node.next 
@@ -76,7 +76,7 @@ class DoublyLinkedList:
         if (index < 0) or (index >= self.length):
             print("\nIndex out of range.")
             return None
-        if (index*2 >= self.length):
+        elif (index*2 >= self.length):
             ref = self.tail
             for _ in range(self.length - index - 1):
                 ref = ref.prev
@@ -97,7 +97,7 @@ class DoublyLinkedList:
         if (index < 0) or (index > self.length):
             print("\nIndex out of range.")
             return False
-        if (index == 0):
+        elif (index == 0):
             return self.prepend(value)
         elif (index == self.length):
             return self.append(value)
@@ -116,7 +116,7 @@ class DoublyLinkedList:
         if (index < 0) or (index >= self.length):
             print("\nIndex out of range.")
             return None
-        if (index == 0):
+        elif (index == 0):
             return self.pop_first()
         elif (index == self.length - 1):
             return self.pop()
@@ -131,7 +131,7 @@ class DoublyLinkedList:
             self.length -= 1
             return removed_node
 
-    def make_clear(self) -> None:
+    def make_clean(self) -> None:
         self.head = None
         self.tail = None
         self.length = 0
@@ -208,9 +208,59 @@ class DoublyLinkedList:
                 backward = backward.prev
         return True
 
-    # TODO: Implement this method.
     def swap_pairs(self) -> None:
-        pass
+        # Checking if the doubly linked list has less than two nodes.
+        # In this situation, there no way to swap nodes.
+        if (self.length < 2):
+            return None
+        
+        # Defining the pointers. ref is pointing to the head, 
+        # before is pointing to the node before ref,
+        # and after is pointing to the node after ref.
+        ref = self.head
+        before = ref.prev
+        after = ref.next
+
+        # Adjusting the head of the doubly linked list.
+        self.head = after
+
+        while ((ref is not None) and (after is not None)):
+            # Adjusting the next pointer of before node before swaping nodes.
+            # After swap, it should be pointing to after node.
+            # Ex.: (1) <-> (2) <-> (3)
+            #       B       R       A
+            # After swaping nodes 2 and 3, next pointer of node 1 should be pointing to node 3.
+            if (before is not None):
+                before.next = after
+
+            # Swaping the nodes.
+            ref.next = after.next
+            after.prev = ref.prev
+            ref.prev = after
+            after.next = ref
+
+            # Moving the pointers.
+            before = ref
+            ref = ref.next
+            if (ref is not None):
+                after = ref.next
+
+                # Adjusting the prev pointer of the ref node after swaping nodes and moving pointers.
+                # After this, it should be pointing to before node.
+                # Ex.: (1) <-> (2) <-> (3) <-> (4) <-> (5)
+                #       B       R       A
+                #      (1) <-> (3) <-> (2) <-> (4) <-> (5)
+                #       B       A       R
+                # After swap nodes 2 and 3 and move the pointers,
+                # prev pointer of node 4 will be pointing to node 3,
+                # but it should be pointing to node 2.
+                #      (1) <-> (3) <-> (2) <-> (4) <-> (5)
+                #                       B       R       A
+                ref.prev = before
+
+        # Adjusting the tail of the doubly linked list.
+        if (ref is None):
+            self.tail = before
             
 if __name__ == "__main__":
     # Creating the doubly linked list.
@@ -240,7 +290,7 @@ if __name__ == "__main__":
     dll.print_info()
 
     print("\nCleaning the DLL.")
-    dll.make_clear()
+    dll.make_clean()
     dll.print_info()
 
     print("\nMethods pop, pop_first, remove, get and set in an empty DLL.")

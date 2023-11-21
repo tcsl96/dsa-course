@@ -228,7 +228,6 @@ class LinkedList:
             ref = ref.next
         return dec
 
-    # TODO: Implement this method.
     def reverse_between(self, start_index: int, end_index: int) -> None:
         # Checking if the indexes are equal or the linked list has less than 2 nodes.
         # In the first situation, there is no node between the indexes to reverse.

@@ -5,4 +5,4 @@ The course is available at Udemy in the following link:
 https://www.udemy.com/course/data-structures-algorithms-python/
 
 # TODO:
-* Implement swap_pairs method.
+* No pending tasks.
