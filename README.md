@@ -5,4 +5,5 @@ The course is available at Udemy in the following link:
 https://www.udemy.com/course/data-structures-algorithms-python/
 
 # TODO:
-* No pending tasks.
+* Create scripts to run "stack.py" and "_queue.py";
+* Create "stack_out.txt" and "queue_out.txt" to store the output of the previous mentioned scripts, respectively.

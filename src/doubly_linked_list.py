@@ -1,4 +1,4 @@
-from utils import get_id
+from out.utils import get_id
 
 class Node:
     def __init__(self, value) -> None:
@@ -137,8 +137,8 @@ class DoublyLinkedList:
         self.length = 0
 
     def print_info(self) -> None:
-        # Printing LL information.
-        # Example output at "ll_out.txt".
+        # Printing DLL information.
+        # Example output at "out/dll.txt".
         N_DASH = 126
         print("\n" + "-"*N_DASH + "\nDLL Info" + "\n" + "-"*N_DASH)
         print(f"Head: {get_id(self.head):<20}{'Tail:':7}{get_id(self.tail):<20}{'Length:':8}{self.length}")
